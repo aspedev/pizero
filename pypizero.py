@@ -1,23 +1,12 @@
 import requests
-from datetime import datetime
 
-def get_time_from_web():
-    url = "https://worldtimeapi.org/api/ip"
-    
-    response = requests.get(url)
-    data = response.json()
+url = "https://timeapi.io/api/Time/current/zone?timeZone=Europe/Madrid"
 
-    datetime_str = data["datetime"]
-    
-    # Convertir a formato más legible
-    dt = datetime.fromisoformat(datetime_str[:-1])
-    
-    return dt
+response = requests.get(url, timeout=5)
+response.raise_for_status()
 
-if __name__ == "__main__":
-    print("Consultando hora desde Internet...\n")
-    
-    now = get_time_from_web()
-    
-    print("Hora actual:")
-    print(now.strftime("%Y-%m-%d %H:%M:%S"))
+data = response.json()
+
+print(f"Fecha: {data['date']}")
+print(f"Hora: {data['time']}")
+print(f"Zona: {data['timeZone']}")
