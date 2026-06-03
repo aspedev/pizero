@@ -2,7 +2,7 @@ import requests
 from datetime import datetime
 
 def get_time_from_web():
-    url = "http://worldtimeapi.org/api/ip"
+    url = "https://worldtimeapi.org/api/ip"
     
     response = requests.get(url)
     data = response.json()
